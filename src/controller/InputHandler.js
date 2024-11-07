@@ -9,6 +9,11 @@ class InputHandler {
 
     return order;
   }
+
+  convertInputToBoolean(input) {
+    if (input == 'Y') return true;
+    return false;
+  }
 }
 
 export default InputHandler;
