@@ -25,4 +25,16 @@ describe('InputHandler 클래스 테스트', () => {
       );
     }
   );
+
+  test.each([
+    ['Y', true],
+    ['N', false],
+  ])(
+    '사용자가 입력한 답(Y/N)을 시스템에서 처리할 수 있는 값으로 변환한다.',
+    (input, expectedBoolean) => {
+      expect(inputHandler.convertInputToBoolean(input)).toEqual(
+        expectedBoolean
+      );
+    }
+  );
 });
