@@ -7,6 +7,8 @@ class Inventory {
     this.#products = this.#convertFileToSystemProduct(fileContent);
   }
 
+  getProducts() {}
+
   #loadProductsFile() {
     try {
       return fs.readFileSync('./public/products.md', 'utf8');
@@ -18,9 +20,11 @@ class Inventory {
   #convertFileToSystemProduct(fileContent) {
     const productList = fileContent.split('\r\n');
 
-    return productList.map((product) => {
-      return this.#generateProdectObject(product);
-    });
+    return productList
+      .map((product) => {
+        return this.#generateProdectObject(product);
+      })
+      .slice(1, -1);
   }
 
   #generateProdectObject(product) {
@@ -33,4 +37,5 @@ class Inventory {
     };
   }
 }
-const iv = new Inventory();
+
+export default Inventory;
