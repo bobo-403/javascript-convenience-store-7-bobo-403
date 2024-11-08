@@ -23,6 +23,11 @@ class Validation {
     if (!productsName.includes(name))
       throw new Error(ERROR_MESSAGE.INVALIDATE_PRODUCT_NAME);
   }
+
+  validateIsNumber(quantity) {
+    if (isNaN(Number(quantity)))
+      throw new Error(ERROR_MESSAGE.NON_NUMERIC_INPUT);
+  }
 }
 
 export default Validation;
