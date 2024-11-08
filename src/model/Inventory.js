@@ -1,8 +1,10 @@
 import fs from 'fs';
 class Inventory {
   #products;
+
   constructor() {
     const fileContent = this.#loadProductsFile();
+    this.#products = this.#convertFileToSystemProduct(fileContent);
   }
 
   #loadProductsFile() {
@@ -11,6 +13,14 @@ class Inventory {
     } catch (err) {
       console.error('파일을 읽는 중 오류 발생:', err);
     }
+  }
+
+  #convertFileToSystemProduct(fileContent) {
+    const productList = fileContent.split('\r\n');
+
+    return productList.map((product) => {
+      return this.#generateProdectObject(product);
+    });
   }
 
   #generateProdectObject(product) {
