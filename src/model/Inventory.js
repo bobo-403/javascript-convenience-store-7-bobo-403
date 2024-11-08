@@ -43,6 +43,11 @@ class Inventory {
     if (product.quantity > 0) return `${product.quantity}개`;
     return '재고없음';
   }
+
+  #getPromotionString(product) {
+    if (product.promotion !== 'null') return product.promotion;
+    return '';
+  }
 }
 
 export default Inventory;
