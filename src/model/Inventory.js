@@ -35,6 +35,13 @@ class Inventory {
     };
   }
 
+  #convertSystemProductToString(product) {
+    const price = this.#getPriceString(product);
+    const quantity = this.#getQuantityString(product);
+    const promotion = this.#getPromotionString(product);
+    return `- ${product.name} ${price} ${quantity} ${promotion}`;
+  }
+
   #getPriceString(product) {
     return `${product.price.toLocaleString()}원`;
   }
