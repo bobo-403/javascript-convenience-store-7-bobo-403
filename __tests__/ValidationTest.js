@@ -94,11 +94,27 @@ describe('Validation 클래스 테스트', () => {
     );
   });
 
-  test('구매 수량이 재고 수량을 초과하지않은 경우 예외가 발생한다.', () => {
+  test('구매 수량이 재고 수량을 초과하지않은 경우 예외가 발생하지 않는다.', () => {
     const name = '콜라';
     const quantity = 10;
     expect(() =>
       validation.validateStockAvailability(name, quantity)
     ).not.toThrow();
   });
+
+  test.each(['yes', '아니오', '1'])(
+    '의사결정 시 Y/N 외 다른 값을 입력된 경우 예외가 발생한다.',
+    (input) => {
+      expect(() => validation.validateDecisionInput(input)).toThrow(
+        ERROR_MESSAGE.INVALID_DECISION_INPUT
+      );
+    }
+  );
+
+  test.each(['Y', 'N'])(
+    '의사결정 시 Y/N 중 입력된 예외가 발생하지 않는다.',
+    (input) => {
+      expect(() => validation.validateDecisionInput(input)).not.toThrow();
+    }
+  );
 });
