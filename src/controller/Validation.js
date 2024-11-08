@@ -34,6 +34,11 @@ class Validation {
       throw new Error(ERROR_MESSAGE.INVALIDATE_PRODUCT_QUANTITY);
     }
   }
+
+  validateStockAvailability(name, quantity) {
+    if (this.#inventory.getTotalQuantity(name) < Number(quantity))
+      throw new Error(ERROR_MESSAGE.INSUFFICIENT_STOCK);
+  }
 }
 
 export default Validation;
