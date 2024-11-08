@@ -1,10 +1,11 @@
-import fs from 'fs';
+import FileManager from '../controller/FileManager.js';
 class Inventory {
   #products;
+  #fileManager;
 
   constructor() {
-    const fileContent = this.#loadProductsFile();
-    this.#products = this.#convertFileToSystemProduct(fileContent);
+    this.#fileManager = new FileManager();
+    this.#products = this.#fileManager.readProductsFile();
   }
 
   getProductsString() {
@@ -13,34 +14,6 @@ class Inventory {
     });
 
     return productStrings.join('\n');
-  }
-
-  #loadProductsFile() {
-    try {
-      return fs.readFileSync('./public/products.md', 'utf8');
-    } catch (err) {
-      console.error('파일을 읽는 중 오류 발생:', err);
-    }
-  }
-
-  #convertFileToSystemProduct(fileContent) {
-    const productList = fileContent.split(/\r?\n/);
-
-    return productList
-      .map((product) => {
-        return this.#generateProductObject(product);
-      })
-      .slice(1, -1);
-  }
-
-  #generateProductObject(product) {
-    const [name, price, quantity, promotion] = product.split(',');
-    return {
-      name: name,
-      price: Number(price),
-      quantity: Number(quantity),
-      promotion: promotion,
-    };
   }
 
   #convertSystemProductToString(product) {
