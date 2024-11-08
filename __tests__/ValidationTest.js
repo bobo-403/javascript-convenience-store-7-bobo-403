@@ -85,4 +85,20 @@ describe('Validation 클래스 테스트', () => {
       }).not.toThrow();
     }
   );
+
+  test('구매 수량이 재고 수량을 초과한 경우 예외가 발생한다.', () => {
+    const name = '콜라';
+    const quantity = 24;
+    expect(() => validation.validateStockAvailability(name, quantity)).toThrow(
+      ERROR_MESSAGE.INSUFFICIENT_STOCK
+    );
+  });
+
+  test('구매 수량이 재고 수량을 초과하지않은 경우 예외가 발생한다.', () => {
+    const name = '콜라';
+    const quantity = 10;
+    expect(() =>
+      validation.validateStockAvailability(name, quantity)
+    ).not.toThrow();
+  });
 });
