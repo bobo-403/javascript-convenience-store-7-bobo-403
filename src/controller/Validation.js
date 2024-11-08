@@ -30,6 +30,7 @@ class Validation {
   }
 
   validatePositiveInteger(quantity) {
+    quantity = Number(quantity);
     if (!(Number.isInteger(quantity) && quantity > 0)) {
       throw new Error(ERROR_MESSAGE.INVALIDATE_PRODUCT_QUANTITY);
     }
