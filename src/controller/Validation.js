@@ -39,6 +39,11 @@ class Validation {
     if (this.#inventory.getTotalQuantity(name) < Number(quantity))
       throw new Error(ERROR_MESSAGE.INSUFFICIENT_STOCK);
   }
+
+  validateDecisionInput(input) {
+    if (!(input === 'Y' || input === 'N'))
+      throw new Error(ERROR_MESSAGE.INVALID_DECISION_INPUT);
+  }
 }
 
 export default Validation;
