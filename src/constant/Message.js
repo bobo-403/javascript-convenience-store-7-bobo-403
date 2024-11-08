@@ -17,6 +17,7 @@ export const ERROR_MESSAGE = Object.freeze({
   INVALIDATE_ORDER_FORAMT: '[상품-수량] 형식으로 입력해주세요.',
   INVALIDATE_PRODUCT_NAME: '존재하지 않는 상품명입니다.',
   INVALIDATE_PRODUCT_QUANTITY: '수량은 0이상 정수로 입력해주세요',
+  NON_NUMERIC_INPUT: '수량은 숫자로 입력해주세요.',
   INSUFFICIENT_STOCK: '입력한 수량이 재고보다 많습니다.',
   INVALID_DECISION_INPUT: 'Y 또는 N로 입력해주세요.',
 });
