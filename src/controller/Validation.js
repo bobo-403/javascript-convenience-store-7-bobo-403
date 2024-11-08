@@ -6,6 +6,11 @@ class Validation {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
     }
   }
+
+  validateOrderFormat(order) {
+    if (!/^\[([^\]]+)-(.+)\]$/.test(order))
+      throw new Error(ERROR_MESSAGE.INVALIDATE_ORDER_FORAMT);
+  }
 }
 
 export default Validation;
