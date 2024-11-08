@@ -9,7 +9,7 @@ describe('InputHandler 클래스 테스트', () => {
 
   test.each([
     [
-      '[콜라-3], [에너지바-5], [사이다-2]',
+      '[콜라-3],[에너지바-5],[사이다-2]',
       [
         { item: '콜라', quantity: 3 },
         { item: '에너지바', quantity: 5 },

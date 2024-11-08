@@ -1,6 +1,6 @@
 class InputHandler {
   convertInputToSystemOrder(input) {
-    const orderItems = input.split(', ');
+    const orderItems = input.split(',');
     const orders = orderItems.map((orderItem) => {
       return this.#generateOrderObject(orderItem);
     });
