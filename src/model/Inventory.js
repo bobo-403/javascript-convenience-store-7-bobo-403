@@ -7,8 +7,6 @@ class Inventory {
     this.#products = this.#convertFileToSystemProduct(fileContent);
   }
 
-  getProducts() {}
-
   #loadProductsFile() {
     try {
       return fs.readFileSync('./public/products.md', 'utf8');
@@ -18,16 +16,16 @@ class Inventory {
   }
 
   #convertFileToSystemProduct(fileContent) {
-    const productList = fileContent.split('\r\n');
+    const productList = fileContent.split(/\r?\n/);
 
     return productList
       .map((product) => {
-        return this.#generateProdectObject(product);
+        return this.#generateProductObject(product);
       })
       .slice(1, -1);
   }
 
-  #generateProdectObject(product) {
+  #generateProductObject(product) {
     const [name, price, quantity, promotion] = product.split(',');
     return {
       name: name,
@@ -35,6 +33,10 @@ class Inventory {
       quantity: Number(quantity),
       promotion: promotion,
     };
+  }
+
+  #getPriceString(product) {
+    return `${product.price.toLocaleString()}원`;
   }
 }
 
