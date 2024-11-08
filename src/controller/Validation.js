@@ -28,6 +28,12 @@ class Validation {
     if (isNaN(Number(quantity)))
       throw new Error(ERROR_MESSAGE.NON_NUMERIC_INPUT);
   }
+
+  validatePositiveInteger(quantity) {
+    if (!(Number.isInteger(quantity) && quantity > 0)) {
+      throw new Error(ERROR_MESSAGE.INVALIDATE_PRODUCT_QUANTITY);
+    }
+  }
 }
 
 export default Validation;
