@@ -1,4 +1,4 @@
-const PROGRESS_MESSAGE = Object.freeze({
+export const PROGRESS_MESSAGE = Object.freeze({
   GRETTING_MESSAGE: '안녕하세요. W편의점입니다.',
   AVAILABLE_PRODUCTS: '현재 보유하고 있는 상품입니다.\n',
   ENTER_PRODUCT_QUANTITY:
@@ -12,4 +12,11 @@ const PROGRESS_MESSAGE = Object.freeze({
     '감사합니다. 구매하고 싶은 다른 상품이 있나요? (Y/N)',
 });
 
-export default PROGRESS_MESSAGE;
+export const ERROR_MESSAGE = Object.freeze({
+  EMPTY_INPUT: '[ERROR] 입력값이 없습니다.',
+  INVALIDATE_ORDER_FORAMT: '[상품-수량] 형식으로 입력해주세요.',
+  INVALIDATE_PRODUCT_NAME: '존재하지 않는 상품명입니다.',
+  INVALIDATE_PRODUCT_QUANTITY: '수량은 0이상 정수로 입력해주세요',
+  INSUFFICIENT_STOCK: '입력한 수량이 재고보다 많습니다.',
+  INVALID_DECISION_INPUT: 'Y 또는 N로 입력해주세요.',
+});
