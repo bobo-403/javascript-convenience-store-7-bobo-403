@@ -38,6 +38,11 @@ class Inventory {
   #getPriceString(product) {
     return `${product.price.toLocaleString()}원`;
   }
+
+  #getQuantityString(product) {
+    if (product.quantity > 0) return `${product.quantity}개`;
+    return '재고없음';
+  }
 }
 
 export default Inventory;
