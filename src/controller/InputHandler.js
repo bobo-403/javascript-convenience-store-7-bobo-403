@@ -1,8 +1,10 @@
 class InputHandler {
   convertInputToSystemOrder(input) {
     const orderItems = input.split(', ');
-    const order = this.#transformToOrderObject(orderItems);
-    return order;
+    const orders = orderItems.map((orderItem) => {
+      return this.#generateOrderObject(orderItem);
+    });
+    return orders;
   }
 
   convertInputToBoolean(input) {
@@ -10,11 +12,9 @@ class InputHandler {
     return false;
   }
 
-  #transformToOrderObject(orderItems) {
-    return orderItems.map((orderItem) => {
-      const [item, quantity] = orderItem.slice(1, -1).split('-');
-      return { item: item, quantity: Number(quantity) };
-    });
+  #generateOrderObject(orderItem) {
+    const [item, quantity] = orderItem.slice(1, -1).split('-');
+    return { item: item, quantity: Number(quantity) };
   }
 }
 
