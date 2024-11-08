@@ -67,4 +67,22 @@ describe('Validation 클래스 테스트', () => {
       }).not.toThrow();
     }
   );
+
+  test.each([0, -2, 0.5])(
+    '수량이 0초과 정수로 입력되지 않은 경우 예외가 발생한다.',
+    (quantity) => {
+      expect(() => {
+        validation.validatePositiveInteger(quantity);
+      }).toThrow(ERROR_MESSAGE.INVALIDATE_PRODUCT_QUANTITY);
+    }
+  );
+
+  test.each([1, 13, 15])(
+    '수량이 0초과 정수로 입력된 경우 예외가 발생한다.',
+    (quantity) => {
+      expect(() => {
+        validation.validatePositiveInteger(quantity);
+      }).not.toThrow();
+    }
+  );
 });
