@@ -49,4 +49,22 @@ describe('Validation 클래스 테스트', () => {
       }).not.toThrow();
     }
   );
+
+  test.each(['하나', '둘', '셋'])(
+    '수량이 숫자로 입력되지 않은 경우 예외가 발생한다.',
+    (quantity) => {
+      expect(() => {
+        validation.validateIsNumber(quantity);
+      }).toThrow(ERROR_MESSAGE.NON_NUMERIC_INPUT);
+    }
+  );
+
+  test.each(['4', '-1', '0.5'])(
+    '수량이 숫자로 입력된 경우 예외가 발생한다.',
+    (quantity) => {
+      expect(() => {
+        validation.validateIsNumber(quantity);
+      }).not.toThrow();
+    }
+  );
 });
