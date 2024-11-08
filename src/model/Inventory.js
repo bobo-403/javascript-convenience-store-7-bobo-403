@@ -12,5 +12,15 @@ class Inventory {
       console.error('파일을 읽는 중 오류 발생:', err);
     }
   }
+
+  #generateProdectObject(product) {
+    const [name, price, quantity, promotion] = product.split(',');
+    return {
+      name: name,
+      price: Number(price),
+      quantity: Number(quantity),
+      promotion: promotion,
+    };
+  }
 }
 const iv = new Inventory();
