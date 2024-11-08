@@ -7,6 +7,14 @@ class Inventory {
     this.#products = this.#convertFileToSystemProduct(fileContent);
   }
 
+  getProductsString() {
+    const productStrings = this.#products.map((product) => {
+      return this.#convertSystemProductToString(product);
+    });
+
+    return productStrings.join('\n');
+  }
+
   #loadProductsFile() {
     try {
       return fs.readFileSync('./public/products.md', 'utf8');
