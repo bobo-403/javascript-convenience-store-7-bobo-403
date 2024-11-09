@@ -1,10 +1,11 @@
 import { ERROR_MESSAGE } from '../constant/Message.js';
+import Inventory from '../model/Inventory.js';
 
 class Validation {
   #inventory;
 
-  constructor(inventory) {
-    this.#inventory = inventory;
+  constructor() {
+    this.#inventory = new Inventory();
   }
 
   validateNotEmpty(input) {
