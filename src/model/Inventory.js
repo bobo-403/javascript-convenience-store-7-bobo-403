@@ -1,4 +1,5 @@
 import FileManager from '../controller/FileManager.js';
+
 class Inventory {
   #products;
   #fileManager;
@@ -16,17 +17,8 @@ class Inventory {
     return productStrings.join('\n');
   }
 
-  getProductsName() {
-    const productsName = [
-      ...new Set(this.#products.map((product) => product.name)),
-    ];
-    return productsName;
-  }
-
-  getTotalQuantity(productName) {
-    return this.#products
-      .filter((product) => product.name === productName)
-      .reduce((sum, product) => sum + product.quantity, 0);
+  getProducts(name) {
+    return this.#products.filter((product) => product.name == name);
   }
 
   #convertSystemProductToString(product) {

@@ -20,8 +20,7 @@ class Validation {
   }
 
   validateProductName(name) {
-    const productsName = this.#inventory.getProductsName();
-    if (!productsName.includes(name))
+    if (this.#inventory.getProducts(name).length === 0)
       throw new Error(ERROR_MESSAGE.INVALIDATE_PRODUCT_NAME);
   }
 
@@ -38,7 +37,10 @@ class Validation {
   }
 
   validateStockAvailability(name, quantity) {
-    if (this.#inventory.getTotalQuantity(name) < Number(quantity))
+    const totalQuantity = this.#inventory
+      .getProducts(name)
+      .reduce((sum, product) => sum + product.quantity, 0);
+    if (totalQuantity < Number(quantity))
       throw new Error(ERROR_MESSAGE.INSUFFICIENT_STOCK);
   }
 
