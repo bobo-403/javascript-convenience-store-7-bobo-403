@@ -15,7 +15,7 @@ describe('PromotionManager 클래스 테스트', () => {
       endDateNextDay: new Date('2024-12-31T15:00:00.000Z'),
     };
 
-    expect(promotionManager.IsPromotionPeriod(promotion)).toBe(true);
+    expect(promotionManager.isPromotionPeriod(promotion)).toBe(true);
   });
 
   test('현재 해당 프로모션의 기간이 아니면 false를 반환한다.', () => {
@@ -27,6 +27,6 @@ describe('PromotionManager 클래스 테스트', () => {
       endDateNextDay: new Date('2024-04-31T15:00:00.000Z'),
     };
 
-    expect(promotionManager.IsPromotionPeriod(promotion)).toBe(false);
+    expect(promotionManager.isPromotionPeriod(promotion)).toBe(false);
   });
 });
