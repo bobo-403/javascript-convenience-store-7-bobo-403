@@ -14,6 +14,7 @@ class FileManager {
   readPromotionsFile() {
     try {
       const fileContent = fs.readFileSync('./public/promotions.md', 'utf8');
+      return this.#convertFileToSystemPromotion(fileContent);
     } catch (err) {
       console.error('파일을 읽는 중 오류 발생:', err);
     }
@@ -37,6 +38,16 @@ class FileManager {
       quantity: Number(quantity),
       promotion: promotion,
     };
+  }
+
+  #convertFileToSystemPromotion(fileContent) {
+    const promotionList = fileContent.split(/\r?\n/);
+
+    return promotionList
+      .map((promotion) => {
+        return this.#generatePromotionObject(promotion);
+      })
+      .slice(1, -1);
   }
 
   #generatePromotionObject(promotion) {
