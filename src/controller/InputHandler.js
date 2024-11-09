@@ -24,12 +24,12 @@ class InputHandler {
 
   #generateOrderObject(order) {
     this.#validation.validateOrderFormat(order);
-    const [item, quantity] = order.slice(1, -1).split('-');
-    this.#validation.validateProductName(item);
+    const [name, quantity] = order.slice(1, -1).split('-');
+    this.#validation.validateProductName(name);
     this.#validation.validateIsNumber(quantity);
     this.#validation.validatePositiveInteger(quantity);
     this.#validation.validateStockAvailability(name, quantity);
-    return { item: item, quantity: Number(quantity) };
+    return { name: name, quantity: Number(quantity) };
   }
 }
 
