@@ -1,3 +1,4 @@
+import { DateTimes } from '@woowacourse/mission-utils';
 import fs from 'fs';
 
 class FileManager {
@@ -5,6 +6,14 @@ class FileManager {
     try {
       const fileContent = fs.readFileSync('./public/products.md', 'utf8');
       return this.#convertFileToSystemProduct(fileContent);
+    } catch (err) {
+      console.error('파일을 읽는 중 오류 발생:', err);
+    }
+  }
+
+  readPromotionsFile() {
+    try {
+      const fileContent = fs.readFileSync('./public/promotions.md', 'utf8');
     } catch (err) {
       console.error('파일을 읽는 중 오류 발생:', err);
     }
