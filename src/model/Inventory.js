@@ -16,6 +16,13 @@ class Inventory {
     return productStrings.join('\n');
   }
 
+  getProductsName() {
+    const productsName = [
+      ...new Set(this.#products.map((product) => product.name)),
+    ];
+    return productsName;
+  }
+
   #convertSystemProductToString(product) {
     const price = this.#getPriceString(product);
     const quantity = this.#getQuantityString(product);
