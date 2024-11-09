@@ -22,6 +22,18 @@ class FileManager {
     }
   }
 
+  updateProductsFile(oldContent, newContent) {
+    const oldContentString = Object.values(oldContent).join(',');
+    const newContentString = Object.values(newContent).join(',');
+
+    this.#productsfile = this.#productsfile.replace(
+      oldContentString,
+      newContentString
+    );
+
+    fs.writeFileSync('./public/products.md', fileContent, 'utf8');
+  }
+
   #convertFileToSystemProduct(fileContent) {
     const productList = fileContent.split(/\r?\n/);
 
@@ -66,6 +78,3 @@ class FileManager {
 }
 
 export default FileManager;
-
-const file = new FileManager();
-file.readProductsFile();
