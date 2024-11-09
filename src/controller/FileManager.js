@@ -38,6 +38,18 @@ class FileManager {
       promotion: promotion,
     };
   }
+
+  #generatePromotionObject(promotion) {
+    const [name, buy, get, startDate, endDate] = promotion.split(',');
+    const end = new Date(`${endDate}T00:00:00`);
+    return {
+      name: name,
+      buy: Number(buy),
+      get: Number(get),
+      startDate: new Date(`${startDate}T00:00:00`),
+      endDateNextDay: new Date(end.setDate(end.getDate() + 1)),
+    };
+  }
 }
 
 export default FileManager;
