@@ -23,6 +23,12 @@ class Inventory {
     return productsName;
   }
 
+  getTotalQuantity(productName) {
+    return this.#products
+      .filter((product) => product.name === productName)
+      .reduce((sum, product) => sum + product.quantity, 0);
+  }
+
   #convertSystemProductToString(product) {
     const price = this.#getPriceString(product);
     const quantity = this.#getQuantityString(product);
