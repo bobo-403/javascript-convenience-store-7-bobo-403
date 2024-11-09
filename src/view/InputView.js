@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import InputHandler from '../controller/InputHandler.js';
-import Message from '../constant/Message.js';
+import { PROGRESS_MESSAGE } from '../constant/Message.js';
 
 class InputView {
   #inputHandler;
@@ -10,7 +10,10 @@ class InputView {
   }
 
   async inputOrder() {
-    const input = await Console.readLineAsync(Message.ENTER_PRODUCT_QUANTITY);
+    const input = await Console.readLineAsync(
+      PROGRESS_MESSAGE.ENTER_PRODUCT_QUANTITY
+    );
+    return this.#inputHandler.convertInputToSystemOrder(input);
   }
 
   async inputYesOrNo(question) {
