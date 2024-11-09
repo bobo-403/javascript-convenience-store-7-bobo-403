@@ -1,11 +1,13 @@
-import { DateTimes } from '@woowacourse/mission-utils';
 import fs from 'fs';
 
 class FileManager {
+  #productsfile;
+  #promotionsfile;
+
   readProductsFile() {
     try {
-      const fileContent = fs.readFileSync('./public/products.md', 'utf8');
-      return this.#convertFileToSystemProduct(fileContent);
+      this.#productsfile = fs.readFileSync('./public/products.md', 'utf8');
+      return this.#convertFileToSystemProduct(this.#productsfile);
     } catch (err) {
       console.error('파일을 읽는 중 오류 발생:', err);
     }
@@ -13,8 +15,8 @@ class FileManager {
 
   readPromotionsFile() {
     try {
-      const fileContent = fs.readFileSync('./public/promotions.md', 'utf8');
-      return this.#convertFileToSystemPromotion(fileContent);
+      this.#promotionsfile = fs.readFileSync('./public/promotions.md', 'utf8');
+      return this.#convertFileToSystemPromotion(this.#promotionsfile);
     } catch (err) {
       console.error('파일을 읽는 중 오류 발생:', err);
     }
@@ -64,3 +66,6 @@ class FileManager {
 }
 
 export default FileManager;
+
+const file = new FileManager();
+file.readProductsFile();
