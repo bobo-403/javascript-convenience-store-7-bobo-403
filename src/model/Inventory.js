@@ -34,7 +34,7 @@ class Inventory {
 
   #getQuantityString(product) {
     if (product.quantity > 0) return `${product.quantity}개`;
-    return '재고없음';
+    return '재고 없음';
   }
 
   #getPromotionString(product) {
