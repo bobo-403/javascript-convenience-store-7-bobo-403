@@ -30,11 +30,18 @@ class Receipt {
 
   setFreeProducts(freeProducts) {
     this.#freeProducts = freeProducts;
+    this.setPromotionDiscount();
   }
 
   setTotalPrice(purchasedProducts) {
     this.#totalPrice = purchasedProducts.reduce((sum, product) => {
       return sum + product.totalPrice;
+    }, 0);
+  }
+
+  setPromotionDiscount() {
+    this.#promotionDiscount = this.#freeProducts.reduce((sum, product) => {
+      return sum + product.freeProductQuantity * product.price;
     }, 0);
   }
 
