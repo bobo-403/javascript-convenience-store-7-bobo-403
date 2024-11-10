@@ -26,7 +26,7 @@ class PromotionManager {
       );
     }
     if (!this.isQuantityCompleteSet(quantity, set)) {
-      return await handleIncompleteQuantity(quantity, product);
+      return await this.handleIncompleteQuantity(quantity, product);
     }
     return { totalQuantity, promotionQuantity };
   }
