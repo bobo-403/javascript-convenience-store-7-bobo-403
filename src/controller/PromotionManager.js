@@ -27,6 +27,12 @@ class PromotionManager {
     );
   }
 
+  async askAddProduct(name) {
+    return await retry(() =>
+      this.#inputView.inputYesOrNo(PROGRESS_MESSAGE.ASK_ADD_FREE_ITEM(name))
+    );
+  }
+
   getPromotionInfo(promotionName) {
     return this.#promotions.find(
       (promotion) => promotion.name == promotionName
