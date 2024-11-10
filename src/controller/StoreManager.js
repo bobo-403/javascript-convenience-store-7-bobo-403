@@ -39,6 +39,17 @@ class StoreManager {
     };
   }
 
+  getFreeProduct(orderDetail) {
+    if (orderDetail.promotionQuantity <= 0) return -1;
+    const freeProductQuantity = this.calculatefreeAmount(orderDetail);
+    if (freeProductQuantity <= 0) return -1;
+    return {
+      name: orderDetail.name,
+      price: orderDetail.price,
+      freeProductQuantity,
+    };
+  }
+
   calculatefreeAmount(orderDetail) {
     const promotionProduct = this.getPromotoinProduct(orderDetail.name);
     const promotion = this.#promotionManager.getPromotionInfo(
