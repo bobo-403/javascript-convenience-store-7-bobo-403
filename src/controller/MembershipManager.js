@@ -6,7 +6,7 @@ class MembershipManager {
   #inputView;
 
   constructor() {
-    this.#inputView = new InputView(s);
+    this.#inputView = new InputView();
   }
 
   async applyMembershipDiscount(receipt) {
