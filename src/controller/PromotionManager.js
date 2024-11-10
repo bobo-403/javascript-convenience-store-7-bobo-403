@@ -24,14 +24,6 @@ class PromotionManager {
     return false;
   }
 
-  getShortQuantity(quantity, inventoryQuantity, promotionSetQuantity) {
-    return (
-      quantity -
-      Math.floor(inventoryQuantity / promotionSetQuantity) *
-        promotionSetQuantity
-    );
-  }
-
   async handleInsufficientPromotionQuantity(quantity, product, set) {
     const shortQuantity = this.getShortQuantity(
       quantity,
@@ -45,12 +37,26 @@ class PromotionManager {
     return { totalQuantity, promotionQuantity };
   }
 
+  getShortQuantity(quantity, inventoryQuantity, promotionSetQuantity) {
+    return (
+      quantity -
+      Math.floor(inventoryQuantity / promotionSetQuantity) *
+        promotionSetQuantity
+    );
+  }
+
   async askContinuePurchase(name, shortQuantity) {
     return await retry(() =>
       this.#inputView.inputYesOrNo(
         PROGRESS_MESSAGE.ASK_PURCHASE_WITHOUT_PROMOTION(name, shortQuantity)
       )
     );
+  }
+
+  isQuantityCompleteSet(quantity, promotionSetQuantity) {
+    if (quantity % promotionSetQuantity === promotionSetQuantity - 1)
+      return false;
+    return true;
   }
 
   async askAddProduct(name) {
