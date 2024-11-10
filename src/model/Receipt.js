@@ -79,6 +79,10 @@ class Receipt {
 
     return receiptString;
   }
+
+  getTotalPrice() {
+    return this.#totalPrice;
+  }
 }
 
 export default Receipt;
