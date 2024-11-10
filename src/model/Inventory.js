@@ -9,6 +9,13 @@ class Inventory {
     this.#products = this.#fileManager.readProductsFile();
   }
 
+  updateProduct(oldContent, newContent) {
+    const oldContentString = Object.values(oldContent).join(',');
+    const newContentString = Object.values(newContent).join(',');
+    this.#fileManager.updateProductsFile(oldContentString, newContentString);
+    this.#products = this.#fileManager.readProductsFile();
+  }
+
   getProductsString() {
     const productStrings = this.#products.map((product) => {
       return this.#convertSystemProductToString(product);
