@@ -53,6 +53,32 @@ class Receipt {
     this.#paymentAmount =
       this.#totalPrice - this.#promotionDiscount - this.#membershipDiscount;
   }
+
+  printReceipt() {
+    this.setPaymentAmount();
+    let receiptString = '\n==============W 편의점================\n';
+    receiptString += '상품명\t\t수량\t금액\n';
+
+    this.#purchasedProducts.forEach((product) => {
+      receiptString += `${product.name}\t\t${
+        product.totalQuantity
+      }\t${product.totalPrice.toLocaleString()}\n`;
+    });
+
+    receiptString += '=============증정===============\n';
+
+    this.#freeProducts.forEach((product) => {
+      receiptString += `${product.name}\t\t${product.freeProductQuantity}\n`;
+    });
+
+    receiptString += '====================================\n';
+    receiptString += `총구매액\t\t${this.#totalPrice.toLocaleString()}\n`;
+    receiptString += `행사할인\t\t-${this.#promotionDiscount.toLocaleString()}\n`;
+    receiptString += `멤버십할인\t\t-${this.#membershipDiscount.toLocaleString()}\n`;
+    receiptString += `내실돈\t\t${this.#paymentAmount.toLocaleString()}\n`;
+
+    return receiptString;
+  }
 }
 
 export default Receipt;
