@@ -5,7 +5,7 @@ const retry = async (action) => {
     return await action();
   } catch (error) {
     Console.print(error.message + '\n');
-    await retry(action);
+    return await retry(action);
   }
 };
 
