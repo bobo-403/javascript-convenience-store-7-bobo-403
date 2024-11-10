@@ -14,6 +14,23 @@ class PromotionManager {
     this.#inputView = new InputView();
   }
 
+  async getTotalAndPromoQuantities(quantity, product) {
+    const set = this.getPromotionSetSize(product);
+    let promotionQuantity = quantity;
+    let totalQuantity = quantity;
+    if (!this.isPromotionQuantitySufficient(quantity, product.quantity)) {
+      return await this.handleInsufficientPromotionQuantity(
+        quantity,
+        product,
+        set
+      );
+    }
+    if (!this.isQuantityCompleteSet(quantity, set)) {
+      return await handleIncompleteQuantity(quantity, product);
+    }
+    return { totalQuantity, promotionQuantity };
+  }
+
   getPromotionSetSize(product) {
     const promotion = this.getPromotionInfo(product.promotion);
     return promotion.buy + promotion.get;
