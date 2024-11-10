@@ -15,7 +15,8 @@ class PromotionManager {
     );
   }
 
-  isPromotionPeriod(promotion) {
+  isPromotionPeriod(product) {
+    const promotion = this.getPromotionInfo(product.promotion);
     const currentTime = DateTimes.now();
     if (
       promotion.startDate <= currentTime &&
