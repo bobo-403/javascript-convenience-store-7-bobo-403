@@ -39,6 +39,16 @@ class StoreManager {
     };
   }
 
+  calculatefreeAmount(orderDetail) {
+    const promotionProduct = this.getPromotoinProduct(orderDetail.name);
+    const promotion = this.#promotionManager.getPromotionInfo(
+      promotionProduct.promotion
+    );
+    const set = promotion.buy + promotion.get;
+    const freeProductQuantity = Math.floor(orderDetail.promotionQuantity / set);
+    return freeProductQuantity;
+  }
+
   getPromotoinProduct(name) {
     const products = this.#inventory.getProducts(name);
     return products.find((product) => product.promotion !== 'null');
