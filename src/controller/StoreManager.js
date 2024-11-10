@@ -13,10 +13,10 @@ class StoreManager {
     this.#inventory = new Inventory();
     this.#promotionManager = new PromotionManager();
     this.#membershipManager = new MembershipManager();
-    this.#receipt = new Receipt();
   }
 
   async processPayment(orders) {
+    this.#receipt = new Receipt();
     const ordersDetail = [];
     const freeProducts = [];
 
