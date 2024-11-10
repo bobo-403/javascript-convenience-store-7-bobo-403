@@ -59,6 +59,13 @@ class PromotionManager {
     return true;
   }
 
+  async handleIncompleteQuantity(quantity, product) {
+    const answer = await this.askAddProduct(product.name);
+    let totalQuantity = quantity;
+    if (answer) totalQuantity += 1;
+    return { totalQuantity, promotionQuantity: totalQuantity };
+  }
+
   async askAddProduct(name) {
     return await retry(() =>
       this.#inputView.inputYesOrNo(PROGRESS_MESSAGE.ASK_ADD_FREE_ITEM(name))
