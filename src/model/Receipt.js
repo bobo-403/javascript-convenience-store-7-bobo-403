@@ -25,10 +25,17 @@ class Receipt {
         totalPrice,
       };
     });
+    this.setTotalPrice(this.#purchasedProducts);
   }
 
   setFreeProducts(freeProducts) {
     this.#freeProducts = freeProducts;
+  }
+
+  setTotalPrice(purchasedProducts) {
+    this.#totalPrice = purchasedProducts.reduce((sum, product) => {
+      return sum + product.totalPrice;
+    }, 0);
   }
 
   setMembreshipDiscount(membershipDiscount) {
