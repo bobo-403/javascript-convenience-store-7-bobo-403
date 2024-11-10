@@ -54,7 +54,7 @@ class Receipt {
       this.#totalPrice - this.#promotionDiscount - this.#membershipDiscount;
   }
 
-  printReceipt() {
+  getReceipt() {
     this.setPaymentAmount();
     let receiptString = '\n==============W 편의점================\n';
     receiptString += '상품명\t\t수량\t금액\n';

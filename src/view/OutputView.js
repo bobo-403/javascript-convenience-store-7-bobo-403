@@ -14,7 +14,7 @@ class OutputView {
   }
 
   showReceipt(receipt) {
-    Console.print(receipt.printReceipt());
+    Console.print(receipt.getReceipt());
   }
 }
 
