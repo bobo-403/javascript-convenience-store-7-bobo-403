@@ -19,6 +19,11 @@ class PromotionManager {
     return promotion.buy + promotion.get;
   }
 
+  isPromotionQuantitySufficient(quantity, inventoryQuantity) {
+    if (quantity <= inventoryQuantity) return true;
+    return false;
+  }
+
   getShortQuantity(quantity, inventoryQuantity, promotionSetQuantity) {
     return (
       quantity -
