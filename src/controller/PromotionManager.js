@@ -77,8 +77,10 @@ class PromotionManager {
   }
 
   async handleIncompleteQuantity(quantity, product) {
-    const answer = await this.askAddProduct(product.name);
     let totalQuantity = quantity;
+    if (quantity === product.quantity)
+      return { totalQuantity, promotionQuantity: totalQuantity };
+    const answer = await this.askAddProduct(product.name);
     if (answer) totalQuantity += 1;
     return { totalQuantity, promotionQuantity: totalQuantity };
   }
