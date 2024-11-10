@@ -66,6 +66,12 @@ class StoreManager {
     return freeProductQuantity;
   }
 
+  updateAllProductInfo(ordersDetail) {
+    ordersDetail.forEach((orderDetail) => {
+      this.updateProductInfo(orderDetail);
+    });
+  }
+
   updateProductInfo(orderDetail) {
     if (orderDetail.promotionQuantity > 0) {
       this.updatePromotionProductInfo(orderDetail);
