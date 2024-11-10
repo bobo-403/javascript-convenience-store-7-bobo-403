@@ -66,6 +66,15 @@ class StoreManager {
     return freeProductQuantity;
   }
 
+  updateProductInfo(orderDetail) {
+    if (orderDetail.promotionQuantity > 0) {
+      this.updatePromotionProductInfo(orderDetail);
+    }
+    if (orderDetail.basicProduct > 0) {
+      this.updateBasicProductInfo(orderDetail);
+    }
+  }
+
   updatePromotionProductInfo(orderDetail) {
     const promotionProduct = this.getPromotoinProduct(orderDetail.name);
     const updatePromotionProduct = { ...promotionProduct };
