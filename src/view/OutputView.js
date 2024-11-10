@@ -12,6 +12,10 @@ class OutputView {
     Console.print(PROGRESS_MESSAGE.AVAILABLE_PRODUCTS);
     Console.print(inventory.getProductsString());
   }
+
+  showReceipt(receipt) {
+    Console.print(receipt.printReceipt());
+  }
 }
 
 export default OutputView;
