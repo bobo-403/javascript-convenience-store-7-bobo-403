@@ -10,9 +10,9 @@ class PromotionManager {
   }
 
   getPromotionInfo(promotionName) {
-    return this.#promotions.find((promotion) => {
-      promotion.name = promotionName;
-    });
+    return this.#promotions.find(
+      (promotion) => promotion.name == promotionName
+    );
   }
 
   isPromotionPeriod(promotion) {
