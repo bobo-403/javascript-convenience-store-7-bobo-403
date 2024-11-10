@@ -32,6 +32,19 @@ class PromotionManager {
     );
   }
 
+  async handleInsufficientPromotionQuantity(quantity, product, set) {
+    const shortQuantity = this.getShortQuantity(
+      quantity,
+      product.quantity,
+      set
+    );
+    const answer = await this.askContinuePurchase(product.name, shortQuantity);
+    let totalQuantity = quantity;
+    let promotionQuantity = quantity - shortQuantity;
+    if (!answer) totalQuantity -= shortQuantity;
+    return { totalQuantity, promotionQuantity };
+  }
+
   async askContinuePurchase(name, shortQuantity) {
     return await retry(() =>
       this.#inputView.inputYesOrNo(
