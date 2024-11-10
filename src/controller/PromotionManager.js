@@ -9,6 +9,11 @@ class PromotionManager {
     this.#promotions = fileManager.readPromotionsFile();
   }
 
+  getPromotionSetSize(product) {
+    const promotion = this.getPromotionInfo(product.promotion);
+    return promotion.buy + promotion.get;
+  }
+
   getPromotionInfo(promotionName) {
     return this.#promotions.find(
       (promotion) => promotion.name == promotionName
