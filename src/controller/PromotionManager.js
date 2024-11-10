@@ -19,6 +19,14 @@ class PromotionManager {
     return promotion.buy + promotion.get;
   }
 
+  getShortQuantity(quantity, inventoryQuantity, promotionSetQuantity) {
+    return (
+      quantity -
+      Math.floor(inventoryQuantity / promotionSetQuantity) *
+        promotionSetQuantity
+    );
+  }
+
   async askContinuePurchase(name, shortQuantity) {
     return await retry(() =>
       this.#inputView.inputYesOrNo(
