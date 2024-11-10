@@ -15,6 +15,18 @@ class Receipt {
     this.#paymentAmount = 0;
   }
 
+  setPurchasedProducts(purchasedProducts) {
+    this.#purchasedProducts = purchasedProducts.map((product) => {
+      const totalQuantity = product.promotionQuantity + product.basicQuantity;
+      const totalPrice = product.price * totalQuantity;
+      return {
+        name: product.name,
+        totalQuantity,
+        totalPrice,
+      };
+    });
+  }
+
   setFreeProducts(freeProducts) {
     this.#freeProducts = freeProducts;
   }
