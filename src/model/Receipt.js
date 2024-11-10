@@ -18,6 +18,11 @@ class Receipt {
   setMembreshipDiscount(membershipDiscount) {
     this.#membershipDiscount = membershipDiscount;
   }
+
+  setPaymentAmount() {
+    this.#paymentAmount =
+      this.#totalPrice - this.#promotionDiscount - this.#membershipDiscount;
+  }
 }
 
 export default Receipt;
