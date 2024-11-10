@@ -73,6 +73,13 @@ class StoreManager {
     this.#inventory.updateProduct(promotionProduct, updatePromotionProduct);
   }
 
+  updateBasicProductInfo(orderDetail) {
+    const basicProduct = this.getBasicProduct(orderDetail.name);
+    const updateBasicProduct = { ...basicProduct };
+    updateBasicProduct.quantity -= orderDetail.basicQuantity;
+    this.#inventory.updateProduct(basicProduct, updateBasicProduct);
+  }
+
   getPromotoinProduct(name) {
     const products = this.#inventory.getProducts(name);
     return products.find((product) => product.promotion !== 'null');
