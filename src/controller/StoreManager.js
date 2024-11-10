@@ -10,6 +10,12 @@ class StoreManager {
     this.#promotionManager = new PromotionManager();
   }
 
+  async processOrder(order) {
+    const orderDetail = await this.getOrderDetail(order);
+    const freeProduct = this.getFreeProduct(orderDetail);
+    return { orderDetail, freeProduct };
+  }
+
   async getOrderDetail(order) {
     let promotionQuantity = 0;
     let basicQuantity = 0;
