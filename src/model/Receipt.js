@@ -83,6 +83,10 @@ class Receipt {
   getTotalPrice() {
     return this.#totalPrice;
   }
+
+  getPromotionDiscount() {
+    return this.#promotionDiscount;
+  }
 }
 
 export default Receipt;
