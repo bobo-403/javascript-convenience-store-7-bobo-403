@@ -23,15 +23,9 @@ class FileManager {
   }
 
   updateProductsFile(oldContent, newContent) {
-    const oldContentString = Object.values(oldContent).join(',');
-    const newContentString = Object.values(newContent).join(',');
+    this.#productsfile = this.#productsfile.replace(oldContent, newContent);
 
-    this.#productsfile = this.#productsfile.replace(
-      oldContentString,
-      newContentString
-    );
-
-    fs.writeFileSync('./public/products.md', fileContent, 'utf8');
+    fs.writeFileSync('./public/products.md', this.#productsfile, 'utf8');
   }
 
   #convertFileToSystemProduct(fileContent) {
