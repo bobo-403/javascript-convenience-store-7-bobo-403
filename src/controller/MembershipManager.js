@@ -6,7 +6,18 @@ class MembershipManager {
   #inputView;
 
   constructor() {
-    this.#inputView = new InputView();
+    this.#inputView = new InputView(s);
+  }
+
+  async applyMembershipDiscount(receipt) {
+    const totalPrice = receipt.getTotalPrice();
+    const promotionDiscount = receipt.getPromotionDiscount();
+
+    const answer = await this.askMembershipDiscount();
+    if (answer) {
+      const discountedPrice = (totalPrice - promotionDiscount) * 0.3;
+      receipt.setMembreshipDiscount(Math.min(8000, discountedPrice));
+    }
   }
 
   async askMembershipDiscount() {
