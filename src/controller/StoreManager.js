@@ -66,6 +66,13 @@ class StoreManager {
     return freeProductQuantity;
   }
 
+  updatePromotionProductInfo(orderDetail) {
+    const promotionProduct = this.getPromotoinProduct(orderDetail.name);
+    const updatePromotionProduct = { ...promotionProduct };
+    updatePromotionProduct.quantity -= orderDetail.promotionQuantity;
+    this.#inventory.updateProduct(promotionProduct, updatePromotionProduct);
+  }
+
   getPromotoinProduct(name) {
     const products = this.#inventory.getProducts(name);
     return products.find((product) => product.promotion !== 'null');
