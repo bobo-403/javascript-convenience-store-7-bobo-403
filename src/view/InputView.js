@@ -18,6 +18,7 @@ class InputView {
 
   async inputYesOrNo(question) {
     const input = await Console.readLineAsync(question);
+    return this.#inputHandler.convertInputToBoolean(input);
   }
 }
 
