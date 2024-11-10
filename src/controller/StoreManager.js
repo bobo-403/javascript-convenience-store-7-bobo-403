@@ -1,13 +1,36 @@
 import Inventory from '../model/Inventory.js';
 import PromotionManager from './PromotionManager.js';
+import MembershipManager from './MembershipManager.js';
+import Receipt from '../model/Receipt.js';
 
 class StoreManager {
   #inventory;
   #promotionManager;
+  #membershipManager;
+  #receipt;
 
   constructor() {
     this.#inventory = new Inventory();
     this.#promotionManager = new PromotionManager();
+    this.#membershipManager = new MembershipManager();
+    this.#receipt = new Receipt();
+  }
+
+  async processPayment(orders) {
+    const ordersDetail = [];
+    const freeProducts = [];
+
+    for (const order of orders) {
+      const { orderDetail, freeProduct } = await this.processOrder(order);
+      ordersDetail.push(orderDetail);
+      if (freeProduct !== -1) freeProducts.push(freeProduct);
+    }
+
+    this.#receipt.setPurchasedProducts(ordersDetail);
+    this.#receipt.setFreeProducts(freeProducts);
+    this.updateAllProductInfo(ordersDetail);
+    await this.#membershipManager.applyMembershipDiscount(this.#receipt);
+    return this.#receipt;
   }
 
   async processOrder(order) {
