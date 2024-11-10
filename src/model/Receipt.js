@@ -15,6 +15,10 @@ class Receipt {
     this.#paymentAmount = 0;
   }
 
+  setFreeProducts(freeProducts) {
+    this.#freeProducts = freeProducts;
+  }
+
   setMembreshipDiscount(membershipDiscount) {
     this.#membershipDiscount = membershipDiscount;
   }
